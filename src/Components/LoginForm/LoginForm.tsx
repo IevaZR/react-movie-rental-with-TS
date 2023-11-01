@@ -3,6 +3,7 @@ import "./LoginForm.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../Redux/userSlice";
+import { UserRootState } from "../../Types/types";
 
 const LoginForm = () => {
   const [inputData, setInputData] = useState({
@@ -13,7 +14,7 @@ const LoginForm = () => {
   const [loginErrorMsg, setLoginErrorMsg] = useState(false);
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const currentUser = useSelector(state => state.user.currentUser)
+  const currentUser = useSelector((state:UserRootState) => state.user.currentUser)
 
   const handleInputData = (event) => {
     setInputData((previous) => ({

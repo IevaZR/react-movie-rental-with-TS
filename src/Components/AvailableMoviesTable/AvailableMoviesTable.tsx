@@ -8,7 +8,6 @@ import { CurrentUser, Movie } from "../../Types/types";
 
 interface AvailableMoviesTableProps {
   currentUser: CurrentUser;
-  originalMovieList: Movie[];
 }
 
 const AvailableMoviesTable = ({ currentUser }: AvailableMoviesTableProps) => {

@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import "./HomePageMovieItem.css";
 import AvailableIcon from "../../Assets/available-icon.png";
 import NotAvailableIcon from "../../Assets/not-available-icon.png";
+import { Movie } from "../../Types/types";
 
-const HomePageMovieItem = ({ movie, rentMovie }) => {
+interface HomePageMovieItemProps {
+  movie: Movie;
+  rentMovie: (movieName: string) => void;
+}
 
+const HomePageMovieItem = ({ movie, rentMovie }: HomePageMovieItemProps) => {
   return (
     <div>
       <table className="MovieTable">

@@ -20,3 +20,9 @@ export type Movie = {
   inStock: number;
   count?: number;
 };
+
+export interface UserRootState {
+    user: {
+        currentUser: CurrentUser
+    }
+}
