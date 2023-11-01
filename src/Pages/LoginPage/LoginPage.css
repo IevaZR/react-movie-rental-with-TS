@@ -1,0 +1,19 @@
+.LoginPageWrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+    background-color: #d9d9d9;
+  }
+
+  .LoginPageHeading {
+    font-family: "Inter";
+    color: #ffffff;
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+

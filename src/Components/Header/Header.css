@@ -1,0 +1,17 @@
+.HeaderWrapper {
+    background-color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 2rem 1rem 2rem;
+    min-width: 500px;
+  }
+  
+  .PageHeading {
+    font-family: "Inter";
+    color: #ffffff;
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }

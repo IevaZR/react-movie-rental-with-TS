@@ -1,0 +1,43 @@
+.MovieTable {
+  width: 100%;
+  font-family: "Inter";
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.MovieTableRow {
+  background-color: #d9d9d9;
+  height: 2.3rem;
+}
+
+.MovieTableRow > td:first-child {
+  border-radius: 15px 0 0 15px;
+}
+
+.MovieTableRow td {
+  text-align: start;
+  padding-left: 15px;
+  min-width: 120px;
+}
+
+.MovieTableRow img {
+  height: 20px;
+}
+
+.MovieTableRow td:last-child {
+  text-align: end;
+}
+
+.HomePageMovieTableButton {
+  width: 100px;
+  height: 2.3rem;
+  background-color: #363636;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.OutOfStockButton {
+  opacity: 50%;
+  cursor: default;
+}

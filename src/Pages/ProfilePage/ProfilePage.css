@@ -1,0 +1,75 @@
+.ProfilePageWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ProfilePageMainSectionWrapper {
+  background-color: #d9d9d9;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem 1rem 2rem;
+  min-width: 500px;
+}
+
+.ProfilePageMainSection {
+  background-color: #ffffff;
+  width: 90%;
+  border-radius: 20px;
+  padding: 1rem 5% 3rem 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ProfilePageMainSectionHeading {
+  font-family: "Inter";
+  margin: 0;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.ProfilePagePersonalInfoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.ProfilePageProfilePhoto {
+  width: 150px;
+}
+
+.HomePageWrapper {
+  font-family: "Inter";
+}
+
+.ProfilePagePersonalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.ProfilePagePersonalInfoText {
+  display: flex;
+  gap: 5px;
+}
+
+.ProfilePagePersonalInfo p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.ProfilePageButtonsWrapper {
+  margin-top: 1rem;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+  margin-left: -2.3rem;
+}

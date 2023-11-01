@@ -1,0 +1,47 @@
+.LoginPageFormWrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+    width: 200px;
+    font-family: "Inter";
+    font-size: 0.6rem;
+    font-weight: 800;
+  }
+  
+  .LoginPageFormWrapper a {
+    text-decoration: none;
+  }
+  
+  .LoginPageInput {
+    border: none;
+    background-color: #ecebeb;
+    height: 1.3rem;
+    margin: 0.2rem 0 1rem 0;
+    padding-left: 0.5rem;
+  }
+  
+  .LoginPageValidErrMsg {
+    margin-top: -0.8rem;
+    font-family: "Inter";
+    font-size: 8px;
+    color: rgb(220, 4, 4);
+    align-self: center;
+    display: none;
+  }
+  
+  .BlackButton {
+    background-color: #363636;
+    border: none;
+    height: 1.5rem;
+    border-radius: 15px;
+    width: 150px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  .BlackButton,
+  .Centered {
+    align-self: center;
+  }

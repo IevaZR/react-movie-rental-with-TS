@@ -1,0 +1,34 @@
+.HomePageWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.HomePageMainSectionWrapper {
+  background-color: #d9d9d9;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem 1rem 2rem;
+  min-width: 500px;
+}
+
+.HomePageMainSection {
+  background-color: #ffffff;
+  width: 90%;
+  border-radius: 20px;
+  padding: 1rem 5% 3rem 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.HomePageMainSectionHeading {
+  font-family: "Inter";
+  margin: 0;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
