@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./RegisterForm.css";
+import { CurrentUser } from "../../Types/types";
 
 const RegisterForm = () => {
   const [inputData, setInputData] = useState({
@@ -26,18 +27,24 @@ const RegisterForm = () => {
     useState(false);
   const [passwordTwoMatchErrorMsg, setPasswordTwoMatchErrorMsg] =
     useState(false);
-  const [users, setUsers] = useState(
-    JSON.parse(localStorage.getItem("react-movie-rental-users")) || []
-  );
 
-  const handleInputData = (event) => {
+  const handleInputData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputData((previous) => ({
       ...previous,
       [event.target.name]: event.target.value,
     }));
   };
 
-  const addUser = (name, surname, email, password) => {
+  const getUsers = () => {
+    const usersData = localStorage.getItem("react-movie-rental-users")
+    let users;
+    if(usersData) {
+      users = JSON.parse(usersData) 
+    }
+    return users
+  }
+
+  const addUser = (name: string, surname:string, email:string, password:string) => {
     const newUserToAdd = {
       id: Math.floor(Math.random() * 100000),
       firstName: name,
@@ -46,8 +53,9 @@ const RegisterForm = () => {
       password: password,
       rentedMovies: [],
     };
+    
+    const users = getUsers()
     const updatedUsers = [...users, newUserToAdd];
-    setUsers(updatedUsers);
 
     localStorage.setItem(
       "react-movie-rental-users",
@@ -87,9 +95,9 @@ const RegisterForm = () => {
   }
 
   function emailMatch() {
-    const userData = users;
+    const userData = getUsers();
 
-    const emailFound = userData.some((item) => item.email === inputData.email1);
+    const emailFound = userData.some((item:CurrentUser) => item.email === inputData.email1);
 
     if (emailFound) {
       setEmailOneDuplicateErrorMsg(true);

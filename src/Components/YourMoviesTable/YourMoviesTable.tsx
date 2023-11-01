@@ -4,15 +4,18 @@ import YourMoviesItem from "../YourMoviesItem/YourMoviesItem";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../../Redux/userSlice";
+import { CurrentUser, Movie } from "../../Types/types";
 
-const YourMoviesTable = ({ currentUser }) => {
+interface YourMoviesTableProps {
+  currentUser: CurrentUser;
+}
+
+const YourMoviesTable = ({ currentUser }: YourMoviesTableProps) => {
   const [yourMovies, setYourMovies] = useState(currentUser?.rentedMovies || []);
-  const [availableMovies, setAvailableMovies] = useState(
-    JSON.parse(localStorage.getItem("reactMovieList"))
-  );
+
   const dispatch = useDispatch();
 
-  const removeMovie = (movieToRemove) => {
+  const removeMovie = (movieToRemove: Movie) => {
     const removedMovieIndex = yourMovies.findIndex(
       (movie) => movie.movieName === movieToRemove.movieName
     );
@@ -22,9 +25,9 @@ const YourMoviesTable = ({ currentUser }) => {
       const updatedMovies = [...yourMovies];
       const removedMovie = updatedMovies[removedMovieIndex];
 
-      if (removedMovie.count > 1) {
+      if (removedMovie.count && removedMovie.count > 1) {
         updatedUserMovies = currentUser.rentedMovies.map((item) =>
-          item.movieName === removedMovie.movieName
+          item.movieName === removedMovie.movieName && item.count
             ? { ...item, count: item.count - 1 }
             : item
         );
@@ -37,10 +40,13 @@ const YourMoviesTable = ({ currentUser }) => {
 
         dispatch(setCurrentUser(updatedUser));
 
-        const users = JSON.parse(
-          localStorage.getItem("react-movie-rental-users")
-        );
-        const userIndex = users.findIndex((user) => user.id === updatedUser.id);
+        const usersData = localStorage.getItem("react-movie-rental-users");
+        let users;
+        if (usersData) {
+          users = JSON.parse(usersData);
+        }
+
+        const userIndex = users.findIndex((user:CurrentUser) => user.id === updatedUser.id);
 
         if (userIndex !== -1) {
           users[userIndex] = updatedUser;
@@ -62,10 +68,13 @@ const YourMoviesTable = ({ currentUser }) => {
 
         dispatch(setCurrentUser(updatedUser));
 
-        const users = JSON.parse(
-          localStorage.getItem("react-movie-rental-users")
-        );
-        const userIndex = users.findIndex((user) => user.id === updatedUser.id);
+        const usersData =  localStorage.getItem("react-movie-rental-users")
+        let users;
+        if(usersData) {
+          users = JSON.parse(usersData);
+        }
+       
+        const userIndex = users.findIndex((user:CurrentUser) => user.id === updatedUser.id);
 
         if (userIndex !== -1) {
           users[userIndex] = updatedUser;
@@ -78,8 +87,14 @@ const YourMoviesTable = ({ currentUser }) => {
       }
     }
 
+    const data = localStorage.getItem("reactMovieList");
+    let availableMovies;
+    if (data) {
+      availableMovies = JSON.parse(data);
+    }
+
     const moveToUpdateIndex = availableMovies.findIndex(
-      (item) => item.movieName === movieToRemove.movieName
+      (item: Movie) => item.movieName === movieToRemove.movieName
     );
 
     const updatedAvailableMovies = [...availableMovies];
@@ -91,8 +106,6 @@ const YourMoviesTable = ({ currentUser }) => {
       "reactMovieList",
       JSON.stringify(updatedAvailableMovies)
     );
-
-    setAvailableMovies(updatedAvailableMovies);
   };
 
   if (yourMovies.length === 0) {

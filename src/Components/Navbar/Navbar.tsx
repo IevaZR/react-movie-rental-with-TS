@@ -3,16 +3,19 @@ import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../Redux/userSlice";
+import { UserRootState } from "../../Types/types";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const currentUser = useSelector(state => state.user.currentUser)
+  const dispatch = useDispatch();
+  const currentUser = useSelector(
+    (state: UserRootState) => state.user.currentUser
+  );
 
   const logOut = () => {
-   dispatch(logoutUser(currentUser))
+    dispatch(logoutUser());
     navigate("/");
-    console.log(currentUser)
+    console.log(currentUser);
   };
   return (
     <nav className="NavBarWrapper">

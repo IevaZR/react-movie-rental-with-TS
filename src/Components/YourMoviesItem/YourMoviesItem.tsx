@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import "./YourMoviesItem.css";
+import { Movie } from "../../Types/types";
 
-const YourMoviesItem = ({ movie, removeMovie }) => {
+interface YourMoviesItemProps {
+  movie: Movie,
+  removeMovie: (movie:Movie)=> void
+}
+
+const YourMoviesItem = ({ movie, removeMovie }: YourMoviesItemProps) => {
   const [rentTime, setRentTime] = useState(12);
 
-  const totalPrice = (price, quantity, time) => {
+  const totalPrice = (price: number, quantity: number, time:number) => {
     return (price * quantity * (time / 12)).toFixed(2);
   };
 
@@ -46,7 +52,7 @@ const YourMoviesItem = ({ movie, removeMovie }) => {
             </td>
             <td>{movie.rentalPrice.toFixed(2)}$</td>
             <td>{movie.count}</td>
-            <td>{totalPrice(movie.rentalPrice, movie.count, rentTime)}$</td>
+            <td>{totalPrice(movie.rentalPrice, movie.count || 0, rentTime)}$</td>
             <td>
               <button className="YourMoviePageMovieTableButton" onClick={() => removeMovie(movie)}>Remove</button>
             </td>

@@ -5,9 +5,10 @@ import Footer from "../../Components/Footer/Footer";
 import YourMoviesTable from "../../Components/YourMoviesTable/YourMoviesTable";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { UserRootState } from "../../Types/types";
 
 const YourMoviesPage = () => {
-  const currentUser = useSelector(state => state.user.currentUser)
+  const currentUser = useSelector((state:UserRootState) => state.user.currentUser)
   const navigate = useNavigate();
 
   useEffect(() => {

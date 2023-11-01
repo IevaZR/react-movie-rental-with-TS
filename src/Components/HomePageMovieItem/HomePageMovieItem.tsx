@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./HomePageMovieItem.css";
 import AvailableIcon from "../../Assets/available-icon.png";
 import NotAvailableIcon from "../../Assets/not-available-icon.png";

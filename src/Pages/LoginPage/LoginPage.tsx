@@ -5,10 +5,11 @@ import LoginForm from "../../Components/LoginForm/LoginForm";
 import RegisterForm from "../../Components/RegisterForm/RegisterForm";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { UserRootState } from "../../Types/types";
 
 
 const LoginPage = () => {
-  const currentUser = useSelector(state => state.user.currentUser)
+  const currentUser = useSelector((state: UserRootState) => state.user.currentUser)
   const navigate = useNavigate();
  
 

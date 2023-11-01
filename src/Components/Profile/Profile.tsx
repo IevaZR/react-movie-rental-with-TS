@@ -3,11 +3,16 @@ import "./Profile.css";
 import ProfilePicture from "../../Assets/profile-photo.png";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../../Redux/userSlice";
+import { CurrentUser } from "../../Types/types";
 
-const Profile = ({currentUser}) => {
-  const dispatch = useDispatch()
+interface ProfileProps {
+  currentUser: CurrentUser;
+}
 
-  function emailValidationCheck(email) {
+const Profile = ({ currentUser }: ProfileProps) => {
+  const dispatch = useDispatch();
+
+  function emailValidationCheck(email: string) {
     const validEmailRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (email !== "" && email.match(validEmailRegex)) {
@@ -19,25 +24,35 @@ const Profile = ({currentUser}) => {
 
   const resetEmail = () => {
     const email = prompt("Please enter a new email address");
-    if (emailValidationCheck(email)) {
-      const updatedUser = {
-        ...currentUser,
-        email: email,
-      };
-      dispatch(setCurrentUser(updatedUser))
-      localStorage.setItem("current-user", JSON.stringify(updatedUser));
+    if (email !== null) {
+      if (emailValidationCheck(email)) {
+        const updatedUser = {
+          ...currentUser,
+          email: email,
+        };
+        dispatch(setCurrentUser(updatedUser));
+        localStorage.setItem("current-user", JSON.stringify(updatedUser));
 
-      const users = JSON.parse(
-        localStorage.getItem("react-movie-rental-users")
-      );
-      const userIndex = users.findIndex((user) => user.id === updatedUser.id);
+        const data = localStorage.getItem("react-movie-rental-users");
+        let users;
+        if (data) {
+          users = JSON.parse(data);
+        }
 
-      if (userIndex !== -1) {
-        users[userIndex] = updatedUser;
+        const userIndex = users.findIndex(
+          (user: CurrentUser) => user.id === updatedUser.id
+        );
 
-        localStorage.setItem("react-movie-rental-users", JSON.stringify(users));
-      } else {
-        alert("Email not valid");
+        if (userIndex !== -1) {
+          users[userIndex] = updatedUser;
+
+          localStorage.setItem(
+            "react-movie-rental-users",
+            JSON.stringify(users)
+          );
+        } else {
+          alert("Email not valid");
+        }
       }
     }
   };

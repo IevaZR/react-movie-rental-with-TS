@@ -4,19 +4,22 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../Redux/userSlice";
 import { UserRootState } from "../../Types/types";
+import { CurrentUser } from "../../Types/types";
 
 const LoginForm = () => {
   const [inputData, setInputData] = useState({
     email: "",
     password: "",
   });
-  
-  const [loginErrorMsg, setLoginErrorMsg] = useState(false);
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const currentUser = useSelector((state:UserRootState) => state.user.currentUser)
 
-  const handleInputData = (event) => {
+  const [loginErrorMsg, setLoginErrorMsg] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const currentUser = useSelector(
+    (state: UserRootState) => state.user.currentUser
+  );
+
+  const handleInputData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputData((previous) => ({
       ...previous,
       [event.target.name]: event.target.value,
@@ -29,16 +32,18 @@ const LoginForm = () => {
       password: inputData.password,
     };
 
-    const userData = JSON.parse(localStorage.getItem("react-movie-rental-users"));
-    if (userData) {
-      const userFound = userData.some((item) => item.email === user.email);
+    const data = localStorage.getItem("react-movie-rental-users");
+    let userData;
+    if (data) {
+      userData = JSON.parse(data);
+      const userFound = userData.some((item:CurrentUser) => item.email === user.email);
       if (userFound) {
-        const matchedUser = userData.find((item) => item.email === user.email);
+        const matchedUser = userData.find((item:CurrentUser) => item.email === user.email);
         if (matchedUser.password === user.password) {
-          dispatch(setCurrentUser(matchedUser))
-          navigate('/home-page')
-          console.log(matchedUser)
-          console.log(currentUser)
+          dispatch(setCurrentUser(matchedUser));
+          navigate("/home-page");
+          console.log(matchedUser);
+          console.log(currentUser);
         } else {
           setLoginErrorMsg(true);
         }
