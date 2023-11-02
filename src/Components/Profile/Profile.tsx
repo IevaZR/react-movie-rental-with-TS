@@ -31,7 +31,6 @@ const Profile = ({ currentUser }: ProfileProps) => {
           email: email,
         };
         dispatch(setCurrentUser(updatedUser));
-        localStorage.setItem("current-user", JSON.stringify(updatedUser));
 
         const data = localStorage.getItem("react-movie-rental-users");
         let users;

@@ -15,11 +15,21 @@ const YourMoviesTable = ({ currentUser }: YourMoviesTableProps) => {
 
   const dispatch = useDispatch();
 
+  const getUsers = () => {
+    const usersData = localStorage.getItem("react-movie-rental-users");
+    let users;
+    if (usersData) {
+      users = JSON.parse(usersData);
+    }
+    return users;
+  };
+
   const removeMovie = (movieToRemove: Movie) => {
     const removedMovieIndex = yourMovies.findIndex(
       (movie) => movie.movieName === movieToRemove.movieName
     );
     let updatedUserMovies;
+    const users = getUsers();
 
     if (removedMovieIndex !== -1) {
       const updatedMovies = [...yourMovies];
@@ -40,13 +50,9 @@ const YourMoviesTable = ({ currentUser }: YourMoviesTableProps) => {
 
         dispatch(setCurrentUser(updatedUser));
 
-        const usersData = localStorage.getItem("react-movie-rental-users");
-        let users;
-        if (usersData) {
-          users = JSON.parse(usersData);
-        }
-
-        const userIndex = users.findIndex((user:CurrentUser) => user.id === updatedUser.id);
+        const userIndex = users.findIndex(
+          (user: CurrentUser) => user.id === updatedUser.id
+        );
 
         if (userIndex !== -1) {
           users[userIndex] = updatedUser;
@@ -68,13 +74,9 @@ const YourMoviesTable = ({ currentUser }: YourMoviesTableProps) => {
 
         dispatch(setCurrentUser(updatedUser));
 
-        const usersData =  localStorage.getItem("react-movie-rental-users")
-        let users;
-        if(usersData) {
-          users = JSON.parse(usersData);
-        }
-       
-        const userIndex = users.findIndex((user:CurrentUser) => user.id === updatedUser.id);
+        const userIndex = users.findIndex(
+          (user: CurrentUser) => user.id === updatedUser.id
+        );
 
         if (userIndex !== -1) {
           users[userIndex] = updatedUser;

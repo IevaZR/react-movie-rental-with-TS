@@ -54,7 +54,11 @@ const RegisterForm = () => {
       rentedMovies: [],
     };
     
-    const users = getUsers()
+    let users = getUsers()
+
+    if (!Array.isArray(users)) {
+      users = [];
+    }
     const updatedUsers = [...users, newUserToAdd];
 
     localStorage.setItem(
@@ -96,6 +100,10 @@ const RegisterForm = () => {
 
   function emailMatch() {
     const userData = getUsers();
+
+    if(!userData) {
+      return false
+    }
 
     const emailFound = userData.some((item:CurrentUser) => item.email === inputData.email1);
 
